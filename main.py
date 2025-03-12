@@ -152,18 +152,17 @@ def main():
                     ts = nic_data[nic_name]['timestamps']
                     vals = nic_data[nic_name]['values']
 
-                    vals_in_kBps = [v / 8.0 for v in vals]
+                    vals_in_MBps = [v / 1000 for v in vals]
                     x = range(len(ts))
 
-                    plt.plot(x, vals_in_kBps, label=f'{nic_name} (KBps)')
+                    plt.plot(x, vals_in_MBps, label=f'{nic_name} (MBps)')
 
         plt.title(f"Netværksforbrug for host: {host_name}")
         plt.xlabel("Seneste målepunkter (20 sek. intervaller)")
-        plt.ylabel("Forbrug KB/s")
+        plt.ylabel("Forbrug MB/s")
         plt.legend()
 
     plt.show()
-    plt.savefig("test.png")
 
 if __name__ == '__main__':
     main()
